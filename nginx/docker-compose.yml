@@ -1,0 +1,23 @@
+# Copyright (c) 2023 RFull Development
+# This source code is managed under the MIT license. See LICENSE in the project root.
+version: '3.9'
+services:
+  nginx:
+    build:
+      context: .
+    image: nginx-fcgi
+    container_name: nginx
+    hostname: nginx
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 80:80
+    volumes:
+      - nginx-etc:/etc/nginx
+      - nginx-log:/var/log/nginx
+volumes:
+  nginx-etc:
+    name: nginx_conf
+  nginx-log:
+    name: nginx_log
